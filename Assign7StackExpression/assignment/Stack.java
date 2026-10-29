@@ -12,11 +12,12 @@ public class Stack<T> extends LinkedList<T> implements StackInterface<T>{
 	public T pop() {
 		Node<T> node = this.head;
 		this.head = this.head.next;
-		return (T)node;
+		return node.value;
 	}
 	
 	 public T peek() {
-		 return (T)this.tail;
+		 Node<T> node = this.head;
+		 return node.value;
 	 }
 	 
 	 public boolean isEmpty() {
@@ -29,7 +30,7 @@ public class Stack<T> extends LinkedList<T> implements StackInterface<T>{
 	 public int size() {
 		 Node<T> curNode = this.head;
 		 int size = 0;
-		 while (curNode.next != null) {
+		 while (curNode != null) {
 			 size++;
 			 curNode = curNode.next;
 		 }
@@ -37,10 +38,11 @@ public class Stack<T> extends LinkedList<T> implements StackInterface<T>{
 	 }
 	 
 	 public static void main(String[] args) {
-			Stack<Integer> stack = new Stack<Integer>();
+			Stack<Integer> stack = new Stack<>();
 			stack.push(30);
 			stack.push(20);
 			stack.push(10);
+			System.out.printf("Peek: %h  Size: %d  isEmpty: %b\n", stack.peek(), stack.size(), stack.isEmpty());
 			stack.show();
 			stack.pop();
 			stack.show();
